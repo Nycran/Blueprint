@@ -388,10 +388,10 @@ function Sync()
                                                     self.syncingIndexs[tblName][page]++;
                                                     if (self.syncingIndexs[tblName][page] >= self.syncingTables[tblName][page].length) {
                                                         self.syncingCounter--;
-                                                        console.log(tblName + ' ' + page + ' ' + self.syncingCounter);
                                                         if (self.syncingCounter == 0 && !self.silentMode) {
                                                             unblockElement("#frmSync");
                                                             $("#accountMessage").html('<div id="general">Done!</div>');
+                                                            self.uploadPhotos("inspection");
                                                         }
                                                     }
                                                     else {
@@ -457,10 +457,10 @@ function Sync()
                                         {
                                             if(!self.silentMode) $("#accountMessage #msg" + tableName).text("Table " + tableName + ": " + self.syncingIndexs[tableName] + " records has been loaded.");
                                             self.syncingCounter--;
-                                            console.log(tableName + ' ' + self.syncingCounter);
                                             if (self.syncingCounter == 0 && !self.silentMode){
                                                 unblockElement("#frmSync");
                                                 $("#accountMessage").html('<div id="general">Done!</div>');
+                                                self.uploadPhotos("inspection");
                                             }
                                         }
                                         else
