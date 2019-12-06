@@ -51,8 +51,11 @@ function DBUtils()
 		console.log('Using sqlitePlugin');
 		this.db = window.sqlitePlugin.openDatabase(this.db_short_name + '.db', this.db_version, this.db_display_name, 1);
 	}
-	else
-		this.db = window.openDatabase(this.db_short_name, this.db_version, this.db_display_name, this.db_max_size);
+	else{
+        alert("Apple discontinued the support for WebSQL in Progressive Web Apps.");
+        window.location("https://developer.apple.com/documentation/safari_release_notes/safari_13_release_notes");
+        return;
+    }
 	
 	// Determine if we have successfully opened the database or not.
 	if(!this.db)

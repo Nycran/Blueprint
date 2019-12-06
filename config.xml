@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id = "com.simb.Blueprint"
-        version = "2.0.17">
-    <name>Blueprint</name>
+        id = "com.simb.Blueprint-ios13"
+        version = "2.0.18">
+    <name>Blueprint iOS13</name>
 
     <description>
-        Conduct onsite buidling inspections with Blueprint and produce beautiful reports that your clients will love.
+        Testing version for iOS13
     </description>
 
     <author href="http://www.simb.com.au" email="dev3@simb.com.au">
