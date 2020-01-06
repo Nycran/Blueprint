@@ -43,12 +43,10 @@
     <gap:plugin name="cordova-plugin-globalization" source="npm" spec="1.0.7"/>
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm" spec="1.7.1"/>
     <gap:plugin name="cordova-plugin-network-information" source="npm" spec="1.3.3"/>
-    <gap:plugin name="cordova-plugin-splashscreen" source="npm" spec="4.0.3"/>
     <gap:plugin name="cordova-plugin-vibration" source="npm" spec="2.1.5"/>
     <gap:plugin name="cordova-plugin-statusbar" source="npm" spec="2.2.3"/>
     <gap:plugin name="cordova-plugin-file-opener2" source="npm" spec="2.0.19"/>
     <gap:plugin name="cordova-plugin-sqlite-2" source="npm" spec="1.0.6"/>
-    <gap:plugin name="cordova-plugin-wkwebview-engine" source="npm" spec="1.1.4"/>
 
 
     <gap:config-file platform="ios" parent="UIStatusBarHidden">
