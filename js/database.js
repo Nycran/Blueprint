@@ -48,7 +48,7 @@ function DBUtils()
 	// Open the database
 
 	if (typeof window.sqlitePlugin != 'undefined'){
-		console.log('Using sqlitePlugin');
+		alert('Using sqlitePlugin');
 		this.db = window.sqlitePlugin.openDatabase(this.db_short_name + '.db', this.db_version, this.db_display_name, 1);
 	}
 	else{
