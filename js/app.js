@@ -16,7 +16,7 @@ window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFile
 function App() 
 {
 	var self = this;	// Create a reference to the object itself
-    this.apiURL = "http://bpi-new-api.wearebuilding.net/";
+    this.apiURL = "https://http-bpi--new--api-wearebuilding-net-3.moesif.net/eyJhcHAiOiI2MTc6NTI5IiwidmVyIjoiMi4wIiwib3JnIjoiMjA3OjUzNiIsImlhdCI6MTU3ODYxNDQwMH0.umQCbuIvfQumsHrI2I6wV824RgPF6CAf_3Jcl9sMNwM/";
     //this.apiURL = "http://bpi-api.wearebuilding.net/";
     //this.apiURL = "http://blueprint.simb.com.au/api/";
 	this.phonegapBuild = true; 	// Set this to true when phonegap is the target
