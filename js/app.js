@@ -184,7 +184,6 @@ function App()
         $('#frmBuilderDetails #state').empty();
         $("#frmInspectionDetails #state").append('<option value="">Choose</option>');
         $("#frmBuilderDetails #state").append('<option value="">Choose</option>');
-        alert(self.IS_STATE_FILTERED);
         if (self.IS_STATE_FILTERED == 0){
             var states = ['VIC', 'NSW', 'ACT', 'QLD', 'NT', 'WA', 'SA', 'TAS'];
         }else{
