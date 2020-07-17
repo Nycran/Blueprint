@@ -16,14 +16,19 @@ window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFile
 function App() 
 {
 	var self = this;	// Create a reference to the object itself
-	//this.apiURL = "http://bpi-api.wearebuilding.net/";
-    this.apiURL = "http://app.bpigrp.com.au/api/";
+	this.apiURL = "http://bpi-api.wearebuilding.net/";
+    //this.apiURL = "http://app.bpigrp.com.au/api/";
 	this.phonegapBuild = true; 	// Set this to true when phonegap is the target
-	this.version = '2.0.20';				// Identifies the app version to the server
-    this.patch = '20';
+	this.version = '2.0.21';	// Identifies the app version to the server
+    this.patch = '21';
 	this.versionStatus = "Product";
 	this.localMode = false;
 	this.context = "";
+
+    this.STATE_CODES = {1: 'VIC', 2: 'TAS', 3: 'QLD', 4: 'NSW', 5: 'SA', 6: 'WA', 7: 'NT'};
+    this.IS_STATE_FILTERED = 0;
+    this.FILTERED_STATE_ID = 1;
+    this.FILTERED_STATE_CODE = 'VIC';
 	
 	// Declare object references
 	this.objLogin = null;		// Holds an instance of the login object
@@ -126,7 +131,12 @@ function App()
 		{
 			// Hide the login screen.
 			$("#main").removeClass("hidden");
-			
+			var is_state_filtered = localStorage.getItem("is_state_filtered");
+            self.IS_STATE_FILTERED = parseInt(is_state_filtered)?1:0;
+            var filtered_state_id = localStorage.getItem("filtered_state_id");
+            self.FILTERED_STATE_ID = filtered_state_id?parseInt(filtered_state_id):1;
+            var filtered_state_code = localStorage.getItem("filtered_state_code");
+            self.FILTERED_STATE_CODE = filtered_state_code?filtered_state_code:'VIC';
 			// Figure out what to do next.
 			this.determineInitialAction();
 		}
@@ -136,7 +146,9 @@ function App()
 		
 		self.scrollTop(); 
 		
-		$("#version").html("Version " + this.version);       
+		$("#version").html("Version " + this.version);
+
+        this.determineStates();
 		
 		// Hide all back / next / save buttons
 		// this.hideAllButtons();
@@ -165,7 +177,23 @@ function App()
 
         //var sql = "DELETE FROM address_book;";
         //objDBUtils.execute(sql, null, null);
-	}
+	};
+
+    this.determineStates = function(){
+        $('#frmInspectionDetails #state').empty();
+        $('#frmBuilderDetails #state').empty();
+        $("#frmInspectionDetails #state").append('<option value="">Choose</option>');
+        $("#frmBuilderDetails #state").append('<option value="">Choose</option>');
+        if (self.IS_STATE_FILTERED == 0){
+            var states = ['VIC', 'NSW', 'ACT', 'QLD', 'NT', 'WA', 'SA', 'TAS'];
+        }else{
+            var states = [objApp.FILTERED_STATE_CODE];
+        }
+        for(var i in states){
+            $("#frmInspectionDetails #state").append('<option value="'+states[i]+'">'+states[i]+'</option>');
+            $("#frmBuilderDetails #state").append('<option value="'+states[i]+'">'+states[i]+'</option>');
+        }
+    };
 	
 	this.scrollTop = function()
 	{

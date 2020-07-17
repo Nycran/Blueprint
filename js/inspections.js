@@ -98,7 +98,12 @@ var Inspections = function()
         {
             $("#inspectionList #il_builder_id").empty();
             $("#inspectionList #il_builder_id").append('<option value="">Choose</option>');
-            objDBUtils.loadSelect("builders", [], "#inspectionList #il_builder_id", function(){
+
+            var filters = [];
+            if (objApp.IS_STATE_FILTERED == 1 && objApp.FILTERED_STATE_CODE)
+                filters.push(new Array("state = '"+objApp.FILTERED_STATE_CODE+"'"));
+
+            objDBUtils.loadSelect("builders", filters, "#inspectionList #il_builder_id", function(){
                 self.doingSave = false;
                 $("#inspectionList #il_builder_id").val(selected_il_builder_id);
                 $("#inspectionList #il_builder_id").trigger('change');
@@ -242,6 +247,10 @@ var Inspections = function()
 	    	sql += "AND i.finalised = ? ";
 	    	values.push(filter_finalised);
 	    }
+
+        if (objApp.IS_STATE_FILTERED == 1 && objApp.FILTERED_STATE_CODE){
+            sql += "  AND i.state = '" + objApp.FILTERED_STATE_CODE + "' ";
+        }
 		
 	    sql += "ORDER BY " + self.sortBy + " " + self.sortDir + " ";	// Show the most recent inspections first.
         
@@ -1604,7 +1613,11 @@ var Inspections = function()
         self.objPopBuilders.empty();
         self.objPopBuilders.append('<option value="">Builder</option>');
 
-        objDBUtils.loadSelect("builders", [], "#inspection #builder_id", function()
+        var filters = [];
+        if (objApp.IS_STATE_FILTERED == 1 && objApp.FILTERED_STATE_CODE)
+            filters.push(new Array("state = '"+objApp.FILTERED_STATE_CODE+"'"));
+
+        objDBUtils.loadSelect("builders", filters, "#inspection #builder_id", function()
 		{
 			// Builders have finished loading.  Preselect the client if we have a client_id.
 			if(objApp.keys.builder_id != "")
