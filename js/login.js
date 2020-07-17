@@ -325,10 +325,7 @@ var Login = function()
 			localStorage.setItem("user_id", data.user_id);
 			localStorage.setItem("first_name", data.first_name); 
 			localStorage.setItem("last_name", data.last_name); 
-			localStorage.setItem("email", data.email); 
-			localStorage.setItem("company_id", data.company_id);
-			localStorage.setItem("company_name", data.company_name);
-			localStorage.setItem("country", data.country);
+			localStorage.setItem("email", data.email);
 			localStorage.setItem("initials", typeof data.initials == 'undefined'?'':data.initials);
 			localStorage.setItem("restricted", data.restricted);
 			localStorage.setItem("password", params["password"]);
@@ -423,13 +420,11 @@ var Login = function()
 	{
 		// Clear all login related session variables
 		localStorage.setItem("first_name", ""); 
-		localStorage.setItem("last_name", ""); 
-		localStorage.setItem("company_id", ""); 
-		localStorage.setItem("company_name", ""); 
-		localStorage.setItem("country", "");	
+		localStorage.setItem("last_name", "");
         localStorage.setItem("email", ""); 
         localStorage.setItem("password", "");
         localStorage.setItem("user_type", "");
+        localStorage.setItem("restricted", 0);
         localStorage.setItem("is_state_filtered", 0);
         localStorage.setItem("filtered_state_id", 1);
         localStorage.setItem("filtered_state_code", 'VIC');

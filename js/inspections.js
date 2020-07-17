@@ -89,7 +89,6 @@ var Inspections = function()
         // Ensure all keys are cleared
         objApp.clearKeys();
         self.inspection = false;
-        self.user_type = localStorage.getItem("user_type");
         
         objDBUtils.orderBy = "name";
         $("#inspectionList .bottomBtns").find("a").removeClass("active");
@@ -309,7 +308,7 @@ var Inspections = function()
                     html += '<a href="#" data-reveal-id="historyReinspection" class="action view showhistory" data-id="' + row.id + '">History</a>';
                 }
 
-                if (self.user_type == 'admin'){
+                if (self.isAdminUser()){
                     html += '<a href="#" class="action delete" data-id="' + row.id + '">Delete</a>';
                 }
                 
@@ -1388,7 +1387,6 @@ var Inspections = function()
 
 		// Check to see if the user is restricted
 		self.restricted = localStorage.getItem("restricted");
-        self.user_type = localStorage.getItem("user_type");
 
 		self.checkCanDelete();
 
@@ -9247,7 +9245,7 @@ var Inspections = function()
     }
 
     this.applyPermission = function(){
-        if (self.user_type == 'admin'){
+        if (self.isAdminUser()){
             $('#btnStep3DeleteInspection').show();
         }else{
             $('#btnStep3DeleteInspection').hide();
@@ -9595,6 +9593,11 @@ var Inspections = function()
             }
             self._addQuestionItems(questions, seq_no);
         });
+    }
+
+    this.isAdminUser = function(){
+        var user_type = localStorage.getItem("user_type");
+        return user_type == 'admin' || user_type == 'super';
     }
 };
 

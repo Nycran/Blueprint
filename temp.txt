@@ -1,3 +1,0 @@
-UPDATE inspections i
-  SET i.report_type = 'House & Land PCI'
-  WHERE i.report_type = 'PCI'
